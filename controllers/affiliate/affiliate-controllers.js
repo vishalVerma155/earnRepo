@@ -43,13 +43,14 @@ const registerAffiliate = async (req, res)=>{
         return res.status(404).json({Message : "User not found. There is something problem in user data saving"});
      }
 
-
-     // generate access token
-     const accessToken = generateJWT({
+     const payload = {
       _id : user._id,
       email : user.email,
       userName : user.userName
-  });
+  };
+
+     // generate access token
+     const accessToken = generateJWT(payload);
 
      res.cookie("AccessToken", accessToken);
 
@@ -85,14 +86,14 @@ const loginAffiliate = async (req, res)=>{
       return res.status(401).json({Message : "Invalid password"});
     }
 
-   
-
-    // generate jwt token
-    const accessToken = generateJWT({
+    const payload = {
       _id : user._id,
       email : user.email,
       userName : user.userName
-  });
+  }
+
+    // generate jwt token
+    const accessToken = generateJWT(payload);
     
     res.cookie("AccessToken", accessToken);
 
@@ -106,8 +107,9 @@ const loginAffiliate = async (req, res)=>{
 // get affiliate profile details
 const getAffiliateProfile = async (req, res)=>{
    const userId = req.user._id; // take affiliate id from request
+ 
    const affiliate = await User.findById(userId, {password : 0});
-   console.log(affiliate);
+   
    return res.status(200).json({affiliate}); // return response
 }
 

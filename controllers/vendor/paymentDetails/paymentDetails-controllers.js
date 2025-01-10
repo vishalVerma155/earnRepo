@@ -19,6 +19,10 @@ const registerBankDetails = async (req, res)=>{
     await bankDetail.save();
 
     if(!bankDetail){
-        return res.status(400).json({});
+        return res.status(400).json({Message : "Some issue in bank details saving in database"});
     }
+
+    return res.status(200).json({Message : "Payment details have been saved.",  bankDetail});
 }
+
+module.exports = {registerBankDetails};

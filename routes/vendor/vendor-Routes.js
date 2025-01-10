@@ -3,7 +3,7 @@ const verifyJWT = require('../../middleware/authMIddleware.js');
 const {registerVendor,allVendorsList, loginVendor,changeVendorPaswword, logoutVendor,deleteVendorProfile, getVendorProfile} = require('../../controllers/vendor/vendor-controllers.js')
 const {upload, createLink, getLinkDetails, updateLinkDetails, deleteCreateLink} = require('../../controllers/vendor/products/link/createLink.controller.js');
 const { registerQueries, viewQueris, viewSingleQuery, editQuery, deleteQuery} = require('../../controllers/vendor/contectAdmin/contectAdmin.controllers.js')
-
+const {registerBankDetails} = require('../../controllers/vendor/paymentDetails/paymentDetails-controllers.js');
 
 const router = express.Router();
 
@@ -54,5 +54,8 @@ router.post("/editQuery/:queryId", verifyJWT,upload.single("attachment"), editQu
 
 // delete query
 router.delete("/deleteQuery/:queryId", verifyJWT, deleteQuery);
+
+// register payment details
+router.post("/registerPaymentDetails", verifyJWT, registerBankDetails);
 
 module.exports = router;
