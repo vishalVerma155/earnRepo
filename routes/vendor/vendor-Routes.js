@@ -4,7 +4,9 @@ const {registerVendor,allVendorsList, loginVendor,changeVendorPaswword, logoutVe
 const {upload, createLink, getLinkDetails, updateLinkDetails, deleteCreateLink} = require('../../controllers/vendor/products/link/createLink.controller.js');
 const { registerQueries, viewQueris, viewSingleQuery, editQuery, deleteQuery} = require('../../controllers/vendor/contectAdmin/contectAdmin.controllers.js')
 const {registerBankDetails , getAllBankAccount, getSingleBankAccount, deleteBankAccount, updateAccountDetails} = require('../../controllers/vendor/paymentDetails/paymentDetails-controllers.js');
-
+const {getPaidBalance} = require('../../controllers/vendor/paidBalance/paidBalance-controllers.js');
+const {getActions} = require('../../controllers/vendor/actions/actions-controllers.js');
+const {getClicks} = require('../../controllers/vendor/clicks/clicks-controllers.js')
 const router = express.Router();
 
 // vendor register router
@@ -69,5 +71,14 @@ router.delete("/deleteBankaAccount/:accountId", verifyJWT, deleteBankAccount);
 
 // update account details
 router.post("/updateBankAccountDetails/:accountId", verifyJWT, updateAccountDetails);
+
+// get paid balance
+router.get("/getPaidBalance", verifyJWT, getPaidBalance);
+
+// get actions 
+router.get("/getActions", verifyJWT, getActions);
+
+// get clicks
+router.get("/getClicks", verifyJWT, getClicks);
 
 module.exports = router;
