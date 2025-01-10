@@ -64,7 +64,7 @@ const registerVendor = async (req, res)=>{
 
 const loginVendor = async (req, res)=>{
 
-   const {userName,password} = req.body;
+   const {userName,email, password} = req.body;
 
    // check blank fields
     const isBlank = [userName,password].some(fields => fields.trim() === "");
@@ -74,7 +74,7 @@ const loginVendor = async (req, res)=>{
     }
 
     // check if Vendor is existed
-    const user = await User.findOne( {userName});
+    const user = await User.findOne( {$or : [{userName}, {email : userName}]});
 
     if(!user){
        return res.status(401).json({Message : "Vendor is not existed."});

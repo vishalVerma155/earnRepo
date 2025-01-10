@@ -71,7 +71,7 @@ const loginAdmin = async (req, res)=>{
     }
 
     // check admin is existed
-    const user = await User.findOne({userName});
+    const user = await User.findOne({$or : [{userName}, {email : userName}]});
 
     if(!user){
        return res.status(401).json({Message : "Admin is not existed."});

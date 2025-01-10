@@ -12,6 +12,10 @@ const bankDetailsSchema = new mongoose.Schema({
         type: String,
         required: true
     },
+    IFSC: {
+        type: String,
+        required: true
+    },
     bankName: {
         type: String,
         required: true

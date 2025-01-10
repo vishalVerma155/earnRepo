@@ -73,7 +73,7 @@ const loginAffiliate = async (req, res)=>{
     }
 
     // check if affiliate is existed
-    const user = await User.findOne( {userName});
+    const user = await User.findOne({$or : [{userName}, {email : userName}]});
 
     if(!user){
        return res.status(401).json({Message : "User is not existed."});

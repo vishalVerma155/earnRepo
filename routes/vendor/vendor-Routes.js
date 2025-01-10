@@ -3,7 +3,7 @@ const verifyJWT = require('../../middleware/authMIddleware.js');
 const {registerVendor,allVendorsList, loginVendor,changeVendorPaswword, logoutVendor,deleteVendorProfile, getVendorProfile} = require('../../controllers/vendor/vendor-controllers.js')
 const {upload, createLink, getLinkDetails, updateLinkDetails, deleteCreateLink} = require('../../controllers/vendor/products/link/createLink.controller.js');
 const { registerQueries, viewQueris, viewSingleQuery, editQuery, deleteQuery} = require('../../controllers/vendor/contectAdmin/contectAdmin.controllers.js')
-const {registerBankDetails} = require('../../controllers/vendor/paymentDetails/paymentDetails-controllers.js');
+const {registerBankDetails , getAllBankAccount, getSingleBankAccount, deleteBankAccount, updateAccountDetails} = require('../../controllers/vendor/paymentDetails/paymentDetails-controllers.js');
 
 const router = express.Router();
 
@@ -57,5 +57,17 @@ router.delete("/deleteQuery/:queryId", verifyJWT, deleteQuery);
 
 // register payment details
 router.post("/registerPaymentDetails", verifyJWT, registerBankDetails);
+
+// get all bank account details
+router.get("/getAllBankAccount", verifyJWT, getAllBankAccount);
+
+// get single bank account details
+router.get("/getSingleBankAccount", verifyJWT, getSingleBankAccount);
+
+// delete bank account details
+router.delete("/deleteBankaAccount/:accountId", verifyJWT, deleteBankAccount);
+
+// update account details
+router.post("/updateBankAccountDetails/:accountId", verifyJWT, updateAccountDetails);
 
 module.exports = router;
