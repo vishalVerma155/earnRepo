@@ -6,7 +6,8 @@ const { registerQueries, viewQueris, viewSingleQuery, editQuery, deleteQuery} = 
 const {registerBankDetails , getAllBankAccount, getSingleBankAccount, deleteBankAccount, updateAccountDetails} = require('../../controllers/vendor/paymentDetails/paymentDetails-controllers.js');
 const {getPaidBalance} = require('../../controllers/vendor/paidBalance/paidBalance-controllers.js');
 const {getActions} = require('../../controllers/vendor/actions/actions-controllers.js');
-const {getClicks} = require('../../controllers/vendor/clicks/clicks-controllers.js')
+const {getClicks} = require('../../controllers/vendor/clicks/clicks-controllers.js');
+const {registerProgram, getProgram, editProgram, getAllPrograms, deleteProgram} = require('../../controllers/vendor/marketTools/program/program-controllers.js');
 const router = express.Router();
 
 // vendor register router
@@ -80,5 +81,20 @@ router.get("/getActions", verifyJWT, getActions);
 
 // get clicks
 router.get("/getClicks", verifyJWT, getClicks);
+
+// create program
+router.post("/createProgram", verifyJWT, registerProgram);
+
+// view program
+router.get("/getProgram/:programId", verifyJWT, getProgram);
+
+// get all programs
+router.get("/getAllPrograms", verifyJWT, getAllPrograms);
+
+// edit program
+router.post("/editProgram/:programId", verifyJWT, editProgram);
+
+// delete program
+router.delete("/deleteProgram/:programId", verifyJWT, deleteProgram);
 
 module.exports = router;
