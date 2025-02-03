@@ -32,7 +32,7 @@ const vendorSchema = new mongoose.Schema({
             "Invalid phone number format. Please use E.164 format, e.g., +1234567890."
           ]
     },
-    affiliateId: {
+    vendorId: {
         type: Number,
         required: [true, "Affiliate id is required"]
     },
@@ -47,7 +47,6 @@ const vendorSchema = new mongoose.Schema({
     storeName: {
         type: String,
         required: [true, "Store name is required"],
-        unique: true,
         trim: true,
         minlength: [3, "Store name must be at least 3 characters"],
         maxlength: [30, "Store name must be at most 30 characters"]
