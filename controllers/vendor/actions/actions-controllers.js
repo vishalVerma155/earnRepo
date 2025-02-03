@@ -1,5 +1,5 @@
 
-const Actions  = require('../../../models/actions/actions.model.js');
+const Actions  = require('../../../models/Vendor/actions/actions.model.js');
 
 const getActions = async (req, res)=>{
     const actions = await Actions.find();

@@ -1,6 +1,6 @@
 const express = require('express');
 const verifyJWT = require('../../middleware/authMIddleware.js');
-const {registerAdmin, loginAdmin, getAdminProfile, deleteAdminProfile,changeAdminPaswword, logoutAdmin, deleteUser } = require('../../controllers/admin/admin-controllers.js');
+const {registerAdmin, loginAdmin, getAdminProfile, deleteAdminProfile,changeAdminPaswword, logoutAdmin } = require('../../controllers/admin/admin-controllers.js');
 
 
 const router = express.Router();
@@ -25,7 +25,7 @@ router.post("/logoutAdmin", verifyJWT, logoutAdmin);
 
 // delete any user
 
-router.delete("/deleteAnyUser/:userId", verifyJWT, deleteUser);
+// router.delete("/deleteAnyUser/:userId", verifyJWT, deleteUser);
 
 
 

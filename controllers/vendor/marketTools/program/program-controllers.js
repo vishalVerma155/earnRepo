@@ -1,4 +1,4 @@
-const Program = require('../../../../models/marketTools/program/program.model.js');
+const Program = require('../../../../models/Vendor/marketTools/program/program.model.js');
 
 
 // create program

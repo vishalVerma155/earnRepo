@@ -1,4 +1,4 @@
-const Clicks = require('../../../models/clicks/clicks.model.js')
+const Clicks = require('../../../models/Vendor/clicks/clicks.model.js');
 
 // get clicks 
 

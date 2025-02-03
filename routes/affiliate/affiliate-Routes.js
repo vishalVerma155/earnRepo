@@ -1,7 +1,7 @@
 
 const express = require('express');
 const verifyJWT = require('../../middleware/authMIddleware.js');
-const {registerAffiliate,logoutAffiliate,allAffiliateList, getAffiliateProfile, deleteAffiliateProfile , changeAffiliatePaswword, loginAffiliate} = require('../../controllers/affiliate/affiliate-controllers.js')
+const {registerAffiliate,logoutAffiliate,allAffiliateList,generateAffiliateLink, getAffiliateProfile, deleteAffiliateProfile , changeAffiliatePaswword, loginAffiliate} = require('../../controllers/affiliate/affiliate-controllers.js')
 
 const router = express.Router();
 
@@ -25,6 +25,9 @@ router.post("/logoutAffiliate", verifyJWT, logoutAffiliate);
 
 // all affiliate list
 router.get("/allAffiliateList", verifyJWT, allAffiliateList);
+
+// generate affiliate link
+router.post("/generateAffiliateLink", generateAffiliateLink);
 
 
 

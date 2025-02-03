@@ -1,4 +1,4 @@
-const User = require('../../models/user-model.js');
+const Vendor = require('../../models/Vendor/web/vendor.model.js')
 const generateJWT = require('../../utils/jwt.js');
 const {hashPassword, comparePassword} = require('../../utils/bcrypt.js')
 
@@ -16,7 +16,7 @@ const registerVendor = async (req, res)=>{
      }
 
      // check if affiliate is already existed
-     const isUserExisted = await User.findOne( {$or: [{ userName }, { email }]});
+     const isUserExisted = await Vendor.findOne( {$or: [{ userName }, { email }]});
 
      if(isUserExisted){
         return res.status(401).json({Message : "User is already existed. Please login or choose other user name"});
@@ -25,7 +25,7 @@ const registerVendor = async (req, res)=>{
 
      const hashedPassword = await hashPassword(password);
      // create Vendor
-     const newUser = new User({
+     const newUser = new Vendor({
         firstName,
         lastName,
         email,
@@ -39,7 +39,7 @@ const registerVendor = async (req, res)=>{
      // save affiliate
      await newUser.save();
 
-     const user = await User.findOne({$or : [{ userName }, { email }]});
+     const user = await Vendor.findOne({$or : [{ userName }, { email }]});
 
      if(!user){
         return res.status(404).json({Message : "Vendor not found. There is something problem in user data saving"});
@@ -74,7 +74,7 @@ const loginVendor = async (req, res)=>{
     }
 
     // check if Vendor is existed
-    const user = await User.findOne( {$or : [{userName}, {email : userName}]});
+    const user = await Vendor.findOne( {$or : [{userName}, {email : userName}]});
 
     if(!user){
        return res.status(401).json({Message : "Vendor is not existed."});
@@ -108,7 +108,7 @@ const loginVendor = async (req, res)=>{
 // get Vendor profile details
 const getVendorProfile = async (req, res)=>{
    const userId = req.user._id; // take affiliate id from request
-   const vendor = await User.findById(userId, {password : 0});
+   const vendor = await Vendor.findById(userId, {password : 0});
    return res.status(200).json({vendor}); // return response
 }
 
@@ -117,7 +117,7 @@ const getVendorProfile = async (req, res)=>{
 const deleteVendorProfile =  async (req, res)=>{
    const userId = req.user._id; // get user id
    const {password} = req.body;
-   const user = await User.findById(userId); // find user
+   const user = await Vendor.findById(userId); // find user
    if(!user){
        return res.status(404).json({Message : "User not found"});
    }
@@ -127,7 +127,7 @@ const deleteVendorProfile =  async (req, res)=>{
     return res.status(402).json({Message : "Wrong password"});
    }
 
-    await User.findByIdAndDelete(user._id); // find and delete user
+    await Vendor.findByIdAndDelete(user._id); // find and delete user
 
    res.clearCookie("AccessToken"); // clear cookies for logout
    return res.status(200).json({Message : "Vendor has been sucessfully deleted"}); // return response
@@ -142,7 +142,7 @@ const changeVendorPaswword = async (req, res)=>{
       return res.status(401).json({Message : "Please enter all fields"});
    }
 
-   const user = await User.findById(req.user._id);
+   const user = await Vendor.findById(req.user._id);
   
 
    // compare password
@@ -170,7 +170,7 @@ const logoutVendor = (req, res) => {
 // get all vendors
 
 const allVendorsList = async (req, res) =>{
-   const list = await User.find({role : "vendor"});
+   const list = await Vendor.find({role : "vendor"});
    res.status(200).json({vendorList : list});
 }
 

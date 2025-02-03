@@ -1,5 +1,5 @@
 const multer = require('multer');
-const CreateLink = require('../../../../models/createLink-models/createLink-model.js');
+const CreateLink = require('../../../../models/Vendor/createLink-models/createLink-model.js')
 
 const storage = multer.diskStorage({
     destination : (req, file, cb) =>{

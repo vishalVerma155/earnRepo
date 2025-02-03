@@ -1,5 +1,5 @@
 const multer = require('multer');
-const Queries = require('../../../models/contectAdmin/contectAdmin.model.js');
+const Queries = require('../../../models/Vendor/contectAdmin/contectAdmin.model.js');
 
 
 // create contect to admin register

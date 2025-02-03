@@ -1,4 +1,4 @@
-const PaidBalance = require('../../../models/paidBalance/paidBalance.model.js');
+const PaidBalance = require('../../../models/Vendor/paidBalance/paidBalance.model.js');
 
 const getPaidBalance =async (req, res)=>{
     const paidBalance = await PaidBalance.find();

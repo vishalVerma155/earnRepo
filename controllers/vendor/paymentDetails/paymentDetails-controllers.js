@@ -1,4 +1,4 @@
-const BankDetails = require('../../../models/paymentDetails/paymentDetails.model.js');
+const BankDetails = require('../../../models/Vendor/paymentDetails/paymentDetails.model.js');
 
 
 const registerBankDetails = async (req, res)=>{
